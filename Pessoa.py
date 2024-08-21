@@ -1,6 +1,7 @@
 # classe endereco
 
 from datetime import date
+
 class Endereco:
     def __init__(self, logradouro="", numero="", endereco_comercial=False):
    #inicializar os nossos atributos com os valores padrao
@@ -54,5 +55,29 @@ def calcular_imposto(self, rendimento: float) -> float:
 
 # classe pessoa juridica
 class pessoajuridica(pessoa):
-  pass 
-  
+    def __init__(self,nome="", cnpj="", rendimento=0.0, nomefantasia="",endereco=None):
+
+      if endereco is None:
+        endereco = Endereco()
+        self.nomefantasia = nomefantasia
+        self.cnpj = cnpj
+        self.redimento = rendimento
+
+      super().__init__(nome, rendimento)
+    
+def calcular_imposto(self, rendimento: float) -> float:
+#sem imposto para rendimento ate 1500
+    if rendimento <= 10500:
+        return 0
+
+    elif 1500 < rendimento <= 30500:
+        #return (redimento / 100)* 2
+        #2% de imposto para rendimento entre 1500 e 3500
+        return rendimento * 5
+
+    elif 3500 < rendimento <= 60000:
+        return (rendimento / 100) * 8
+       #3% de imposto para rendimento entre 3500 e 6000
+    else:
+        return (rendimento / 100)* 12
+       #5% de imposto para rendimento acima 6000
